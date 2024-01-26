@@ -1,0 +1,66 @@
+<template>
+	<div class="slds-box slds-theme_default container">
+		<div class="slds-grid slds-wrap container__header">
+			<div class="slds-col slds-size_12-of-12 container__title slds-p-left_small slds-p-vertical_medium">
+				<h2>Pedido Rápido</h2>
+			</div>
+			<div class="slds-col slds-size_6-of-12 slds-p-left_small slds-p-bottom_small item__product--title ">
+				Produto
+			</div>
+			<div class="slds-col slds-size_6-of-12 slds-p-left_small slds-p-bottom_small item__quantity--title ">
+				Quantidade
+			</div>
+		</div>
+		<div class="slds-grid slds-wrap container__content ">
+			<div class=" item__product slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small product__input"
+				placeholder="Produto ou SKU"/>
+			</div>
+		
+			<div class=" item__quantity slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small quantity__input"
+				placeholder="1"/>
+			</div>
+			<div class=" item__product slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small product__input"
+				placeholder="Produto ou SKU"/>
+			</div>
+		
+			<div class=" item__quantity slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small quantity__input"
+				placeholder="1"/>
+			</div>
+			<div class=" item__product slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small product__input"
+				placeholder="Produto ou SKU"/>
+			</div>
+		
+			<div class=" item__quantity slds-col slds-p-bottom_small">
+				<input 
+				type="text"
+				class="slds-input slds-m-left_small quantity__input"
+				placeholder="1"/>
+			</div>
+		</div>
+
+		<div class="slds-p-vertical_small add__item--container">
+			<div class="add__item--item">
+				<a class="slds-text-link_reset add__item--link" href="#" onclick={doSomething}>ADIOCIONAR LINHA</a>
+			</div>
+		</div>
+		
+		<div class="slds-p-around_large button__container">
+			<button class="slds-button slds-button_brand black-button" title="ADICIONAR AO CARRINHO">ADICIONAR AO CARRINHO</button>
+		</div>
+	</div>
+</template>
