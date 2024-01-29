@@ -1,0 +1,38 @@
+.slds-card__header{
+	background-color:#e5e5e5;
+	padding-bottom: var(--sds-c-card-header-spacing-block-start, var(--slds-c-card-header-spacing-block, var(--sds-c-card-header-spacing-block, var(--lwc-varSpacingVerticalSmall,0.75rem))));
+}
+
+.container_card--body{
+	max-height: 500px;
+	overflow-y: auto
+}
+
+.button-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.refresh-button {
+    padding: 0.5rem 1rem;
+}
+
+.white-icon .slds-icon {
+    fill: white;
+}
+.svg__container{
+	height: 30px;
+	width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.svg__class{
+	height: 20px;
+	width: 20px;
+}
+.gray-text {
+    color: darkgray;
+}
