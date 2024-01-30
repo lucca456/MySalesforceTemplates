@@ -9,7 +9,6 @@ export default class MmsClientPaginationTemplate extends LightningElement {
 	wiredRecord({error, data}){
 		if(data){
 			this.totalRecords = data;
-			console.log(this.totalRecords);
 		}
 		if(error){
 			console.error(error);
