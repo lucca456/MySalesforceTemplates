@@ -21,17 +21,33 @@
 			</header>
 		</div>
 		<div class="slds-card__body slds-card__body_inner container_card--body">
-			<template for:each={data} for:item="event">
-				<div key={event.EventUuid} class="slds-box slds-m-bottom_small slds-grid slds-gutters slds-wrap">
-					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_size_1-of-2">
-						<div><strong>Message:</strong></div>
-						{event.Message__c}
+			<template if:false={isVisible}>
+				<div class="container__warning--page">
+					<div class="container__warning--icon">
+						<svg class="slds-icon slds-icon-text-warning icon__size" aria-hidden="true">
+							<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#warning"></use>
+						</svg>
 					</div>
-					<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_size_1-of-2">
-						<div><strong>Created Date:</strong> </div>
-						{event.CreatedDate}
+					<div class="container__warning--label">
+						<div class="container__text">
+							Não Há Eventos Para Voçê
+						</div>
 					</div>
 				</div>
+			</template>
+			<template if:true={isVisible}>
+				<template for:each={data} for:item="event">
+					<div key={event.EventUuid} class="slds-box slds-m-bottom_small slds-grid slds-gutters slds-wrap">
+						<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_size_1-of-2">
+							<div><strong>Message:</strong></div>
+							{event.Message__c}
+						</div>
+						<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_size_1-of-2">
+							<div><strong>Created Date:</strong> </div>
+							{event.CreatedDate}
+						</div>
+					</div>
+				</template>
 			</template>
 		</div>
 		<footer class="slds-card__footer"></footer>
