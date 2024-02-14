@@ -20,12 +20,25 @@ public with sharing class MMSTemplateCallouts {
 	}
 
 	public static HttpResponse makePostCallout() {
+		BodyRequestWrapper requestBody = new BodyRequestWrapper(
+			'test data',
+			'test form',
+			'test args'
+		);
+
+		String serializedBody = JSON.serialize(requestBody);
 
 		Http http = new Http();
 
 		HttpRequest request = new HttpRequest();
 		request.setEndPoint('callout:HttpBinCredential/post');
 		request.setMethod('POST');
+		request.setBody(EncodingUtil.urlEncode(
+			serializedBody,
+			'UTF-8'
+		));
+		request.setHeader('Content-type','application/x-www-form-urlencoded');
+
 		System.debug('resquest => ' + request);
 		System.debug('request body => ' + request.getBody());
 
@@ -97,6 +110,18 @@ public with sharing class MMSTemplateCallouts {
 		}
 
 		return response;
+	}
+
+	public class BodyRequestWrapper {
+		String data;
+		String form;
+		String args;
+
+		public BodyRequestWrapper(String data, String form, String args){
+			this.data = data;
+			this.form = form;
+			this.args = args;
+		}
 	}
 
 }
