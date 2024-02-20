@@ -1,3 +1,55 @@
 <template>
-    
+	<article class="slds-card">
+		<div class="slds-card__header slds-grid">
+		  <header class="slds-media slds-media_center slds-has-flexi-truncate">
+			<div class="slds-media__figure">
+			  <span class="slds-icon_container slds-icon-standard-file white-icon svg__container" title="file">
+					<svg class="slds-icon slds-icon-text-default icon__size svg__class" aria-hidden="true">
+						<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#file"></use>
+					</svg>
+				<span class="slds-assistive-text">Callout</span>
+			  </span>
+			</div>
+			<div class="slds-media__body">
+			  <h2 class="slds-card__header-title">
+				<a href="#" class="slds-card__header-link slds-truncate" title="Status File">
+				  <span>Callout Samples</span>
+				</a>
+			  </h2>
+			  <p class="slds-text-body_small">Callouts</p>
+			</div>
+			<!-- <div class="slds-media__body button-container">
+				<button class="slds-button slds-button_neutral slds-button_icon slds-card__header-link slds-m-left_small refresh-button gray-text" title="Refresh">
+					<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+						<use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#refresh"></use>
+					</svg>
+					<span class="slds-truncate" title="Refresh">Refresh</span>
+				</button>
+			</div> -->
+		  </header>
+		</div>
+		<div class="slds-card__body slds-card__body_inner card_body">
+			<div class="slds-grid">
+				<div class="slds-grid slds-wrap slds-col slds-size_2-of-12 slds-m-around_small">
+					<button class="slds-col slds-size_1-of-1 slds-m-bottom_x-small slds-button slds-button_brand uniform-button" value="GET" onclick={handleGetCallout}>GET</button>
+					<button class="slds-col slds-size_1-of-1 slds-m-vertical_x-small slds-button slds-button_brand uniform-button" value="POST" onclick={handlePostCallout}>POST</button>
+					<button class="slds-col slds-size_1-of-1 slds-m-vertical_x-small slds-button slds-button_brand uniform-button" value="PATCH" onclick={handlePatchCallout}>PATCH</button>
+					<button class="slds-col slds-size_1-of-1 slds-m-vertical_x-small slds-button slds-button_brand uniform-button" value="PUT" onclick={handlePutCallout}>PUT</button>
+					<button class="slds-col slds-size_1-of-1 slds-m-vertical_x-small slds-button slds-button_brand uniform-button" value="DELETE" onclick={handleDeleteCallout}>DELETE</button>
+				</div>
+				<div class="slds-grid slds-col request-response-container"> <!-- Adiciona a classe para a borda e o fundo -->
+					<div class="slds-col slds-size_5-of-10 request-container"> <!-- Classe para o contêiner de requisição -->
+						<b><h2>Request Body</h2></b>
+						<pre>{requestBody}</pre>
+					</div>
+					<div class="slds-col slds-size_5-of-10 response-container"> <!-- Classe para o contêiner de resposta -->
+						<b><h2>Response Body</h2></b>
+						<pre>{responseBody}</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="slds-card__footer"></footer>
+	</article>
+		
 </template>
