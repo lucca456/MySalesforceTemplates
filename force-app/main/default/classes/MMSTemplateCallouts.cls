@@ -1,25 +1,26 @@
 public with sharing class MMSTemplateCallouts {
 
-	public static HttpResponse makeGetCallout() {
+	@AuraEnabled
+	public static CalloutWrapper makeGetCallout() {
 
 		Http http = new Http();
 
 		HttpRequest request = new HttpRequest();
 		request.setEndPoint('callout:HttpBinCredential/get');
 		request.setMethod('GET');
-		System.debug('resquest => ' + request);
-		System.debug('request body => ' + request.getBody());
+
 		HttpResponse response = http.send(request);
-		System.debug('response => ' + response);
 
 		if(response.getStatusCode() == 200){
 			System.debug('response body => ' + response.getBody());
 		}
 
-		return response;
+		return new CalloutWrapper(request.getBody(), response.getBody());
 	}
 
-	public static HttpResponse makePostCallout() {
+	@AuraEnabled
+	public static CalloutWrapper makePostCallout() {
+
 		BodyRequestWrapper requestBody = new BodyRequestWrapper(
 			'test data',
 			'test form',
@@ -39,48 +40,42 @@ public with sharing class MMSTemplateCallouts {
 		));
 		request.setHeader('Content-type','application/x-www-form-urlencoded');
 
-		System.debug('resquest => ' + request);
-		System.debug('request body => ' + request.getBody());
 
 		HttpResponse response = http.send(request);
-		System.debug('response => ' + response);
 
 		if(response.getStatusCode() == 200){
 			System.debug('response body => ' + response.getBody());
 		}
 
-		return response;
+		return new CalloutWrapper(request.getBody(), response.getBody());
 	}
 
-	public static HttpResponse makePatchCallout() {
+	@AuraEnabled
+	public static CalloutWrapper makePatchCallout() {
 
 		Http http = new Http();
 
 		HttpRequest request = new HttpRequest();
 		request.setEndPoint('callout:HttpBinCredential/patch');
 		request.setMethod('PATCH');
-		System.debug('resquest => ' + request);
-		System.debug('request body => ' + request.getBody());
 
 		HttpResponse response = http.send(request);
-		System.debug('response => ' + response);
 
 		if(response.getStatusCode() == 200){
 			System.debug('response body => ' + response.getBody());
 		}
 
-		return response;
+		return new CalloutWrapper(request.getBody(), response.getBody());
 	}
 
-	public static HttpResponse makePutCallout() {
+	@AuraEnabled
+	public static CalloutWrapper makePutCallout() {
 
 		Http http = new Http();
 
 		HttpRequest request = new HttpRequest();
 		request.setEndPoint('callout:HttpBinCredential/put');
 		request.setMethod('PUT');
-		System.debug('resquest => ' + request);
-		System.debug('request body => ' + request.getBody());
 
 		HttpResponse response = http.send(request);
 		System.debug('response => ' + response);
@@ -89,10 +84,11 @@ public with sharing class MMSTemplateCallouts {
 			System.debug('response body => ' + response.getBody());
 		}
 
-		return response;
+		return new CalloutWrapper(request.getBody(), response.getBody());
 	}
 
-	public static HttpResponse makeDeleteCallout() {
+	@AuraEnabled
+	public static CalloutWrapper makeDeleteCallout() {
 
 		Http http = new Http();
 
@@ -109,7 +105,7 @@ public with sharing class MMSTemplateCallouts {
 			System.debug('response body => ' + response.getBody());
 		}
 
-		return response;
+		return new CalloutWrapper(request.getBody(), response.getBody());
 	}
 
 	public class BodyRequestWrapper {
@@ -121,6 +117,18 @@ public with sharing class MMSTemplateCallouts {
 			this.data = data;
 			this.form = form;
 			this.args = args;
+		}
+	}
+
+	public class CalloutWrapper {
+		@AuraEnabled
+		public String requestBody;
+		@AuraEnabled
+		public String responseBody;
+
+		public CalloutWrapper(String requestBody, String responseBody){
+			this.requestBody = requestBody;
+			this.responseBody = responseBody;
 		}
 	}
 
