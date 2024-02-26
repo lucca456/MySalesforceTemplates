@@ -10,31 +10,28 @@ export default class MmsEventView extends LightningElement {
     ];
  
     subscription = {};
-    @api channelName = '/event/TestEvent__e';
+	isVisible = false;
 
-	connectedCallback(event) {
+    @api 
+	channelName = '/event/TestEvent__e';
+
+	connectedCallback() {
         this.handleSubscribe();
-		console.log('data =>', this.data);
-		
-    }
-
-    proxyToObj(obj){
-        return JSON.parse(JSON.stringify(obj));
     }
 
 	handleSubscribe() {
         const messageCallback = (response) => {
             console.log('New message received: ', response);
-
-            // Extracting payload data and creating a new record object
             const eventData = response.data.payload;
             const record = {
                 Message__c: eventData.Message__c,
                 CreatedDate: eventData.CreatedDate
             };
-
-            // Adding the new record to the existing data array
             this.data = [...this.data, record];
+			if(this.data){
+				this.isVisible = true;
+			}
+			
         };
  
         subscribe(this.channelName, -1, messageCallback).then(response => {
